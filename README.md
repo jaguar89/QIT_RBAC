@@ -36,3 +36,6 @@ To have full control, log in as 'super admin':
 
 - Email: `admin@admin.com`
 - Password: `password`
+
+- Home: `http://127.0.0.1:8000/`
+- Dashboard: `http://127.0.0.1:8000/dashboard`
