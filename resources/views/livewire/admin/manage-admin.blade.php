@@ -126,19 +126,57 @@
 
                     <!-- Permissions -->
                     <div class="mt-4">
-                        <x-input-label :value="__('Permissions')" class="mt-8 mb-2" />
-                        <div class="flex items-start space-x-12">
-                            <div>
+                        <x-input-label :value="__('Permissions:')" class="mt-8 mb-6 py-4  border-b-2 " />
+                        <div class="flex items-start space-x-8">
+                            <div class="flex flex-row gap-1">
                                 <x-checkbox wire:model="permissions.dashboard-access" id="dashboard-access"/>
                                 <x-input-label for="dashboard-access" :value="__('Dashboard Access')"/>
                             </div>
-                            <div>
-                                <x-checkbox wire:model="permissions.manage-products" id="manage-products"/>
-                                <x-input-label for="manage-products" :value="__('Manage Products')"/>
+{{--                            <div>--}}
+{{--                                <x-checkbox wire:model="permissions.manage-products" id="manage-products"/>--}}
+{{--                                <x-input-label for="manage-products" :value="__('Manage Products')"/>--}}
+{{--                            </div>--}}
+{{--                            <div>--}}
+{{--                                <x-checkbox wire:model="permissions.manage-categories" id="manage-categories"/>--}}
+{{--                                <x-input-label for="manage-categories" :value="__('Manage Categories')"/>--}}
+{{--                            </div>--}}
+                        </div>
+                        <x-input-label :value="__('Categories:')" class="mt-8 mb-2" />
+                        <div class="flex items-start space-x-8">
+                            <div class="flex flex-row gap-1">
+                                <x-checkbox wire:model="permissions.read-categories" id="read-categories"/>
+                                <x-input-label for="read-categories" :value="__('Read Category')"/>
                             </div>
-                            <div>
-                                <x-checkbox wire:model="permissions.manage-categories" id="manage-categories"/>
-                                <x-input-label for="manage-categories" :value="__('Manage Categories')"/>
+                            <div class="flex flex-row gap-1">
+                                <x-checkbox wire:model="permissions.create-categories" id="create-categories"/>
+                                <x-input-label for="create-categories" :value="__('Create Category')"/>
+                            </div>
+                            <div class="flex flex-row gap-1">
+                                <x-checkbox wire:model="permissions.update-categories" id="update-categories"/>
+                                <x-input-label for="update-categories" :value="__('Update Category')"/>
+                            </div>
+                            <div class="flex flex-row gap-1">
+                                <x-checkbox wire:model="permissions.delete-categories" id="delete-categories"/>
+                                <x-input-label for="delete-categories" :value="__('Delete Category')"/>
+                            </div>
+                        </div>
+                        <x-input-label :value="__('Products:')" class="mt-8 mb-2" />
+                        <div class="flex items-start space-x-8">
+                            <div class="flex flex-row gap-1">
+                                <x-checkbox wire:model="permissions.read-products" id="read-products"/>
+                                <x-input-label for="read-products" :value="__('Read Product')"/>
+                            </div>
+                            <div class="flex flex-row gap-1">
+                                <x-checkbox wire:model="permissions.create-products" id="create-products"/>
+                                <x-input-label for="create-products" :value="__('Create Product')"/>
+                            </div>
+                            <div class="flex flex-row gap-1">
+                                <x-checkbox wire:model="permissions.update-products" id="update-products"/>
+                                <x-input-label for="update-products" :value="__('Update Product')"/>
+                            </div>
+                            <div class="flex flex-row gap-1">
+                                <x-checkbox wire:model="permissions.delete-products" id="delete-products"/>
+                                <x-input-label for="delete-products" :value="__('Delete Product')"/>
                             </div>
                         </div>
                         <x-input-error :messages="$errors->get('permissions')" class="mt-2"/>

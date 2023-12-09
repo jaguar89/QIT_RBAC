@@ -33,12 +33,12 @@ new class extends Component
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    @can('manage-categories')
+                    @can('read-categories')
                     <x-nav-link :href="route('categories')" :active="request()->routeIs('categories')" wire:navigate>
                         {{ __('Category') }}
                     </x-nav-link>
                     @endcan
-                    @can('manage-products')
+                    @can('read-products')
                     <x-nav-link :href="route('products')" :active="request()->routeIs('products')" wire:navigate>
                         {{ __('Products') }}
                     </x-nav-link>

@@ -8,10 +8,12 @@
                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" wire:navigate>
                 All Products
             </a>
-            <a href="{{ route('manage.product') }}"
-               class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" wire:navigate>
-                Create Product
-            </a>
+            @can('create-products')
+                <a href="{{ route('manage.product') }}"
+                   class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" wire:navigate>
+                    Create Product
+                </a>
+            @endcan
         </nav>
     </div>
 </x-slot>
@@ -63,7 +65,8 @@
                         <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}"
                              class="w-48 h-auto mx-auto  object-cover  rounded">
                     @else
-                        <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512" class="w-16 h-16 mx-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512"
+                             class="w-16 h-16 mx-auto">
                             <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
                             <path
                                 d="M50.7 58.5L0 160H208V32H93.7C75.5 32 58.9 42.3 50.7 58.5zM240 160H448L397.3 58.5C389.1 42.3 372.5 32 354.3 32H240V160zm208 32H0V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V192z"/>
@@ -74,12 +77,17 @@
                 <td class="py-2 px-4 ">{{ $product->category->name }}</td>
                 <td class="py-2 px-4 ">{{ $product->price }}</td>
                 <td class="py-2 px-4 flex justify-center items-center space-x-4 {{($loop->index == 0) ? '' : ''}}">
-                    <a href="{{ route('manage.product' ,  ['id' => $product->id]) }}"
-                       class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" wire:navigate>Edit</a>
-                    <button wire:click="deleteProduct({{ $product->id }})"
-                            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                        Delete
-                    </button>
+                    @can('update-products')
+                        <a href="{{ route('manage.product' ,  ['id' => $product->id]) }}"
+                           class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                           wire:navigate>Edit</a>
+                    @endcan
+                    @can('delete-products')
+                        <button wire:click="deleteProduct({{ $product->id }})"
+                                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                            Delete
+                        </button>
+                    @endcan
                 </td>
 
             </tr>
@@ -87,7 +95,7 @@
         </tbody>
     </table>
     <div class="mt-4">
-                {{ $products->links() }} <!-- Pagination links -->
+        {{ $products->links() }} <!-- Pagination links -->
     </div>
 </div>
 

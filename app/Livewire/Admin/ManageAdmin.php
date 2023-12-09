@@ -19,8 +19,14 @@ class ManageAdmin extends Component
     public string $confirmedPasswordLabel = 'Confirm Password';
     public $permissions = [
         'dashboard-access' => false,
-        'manage-products' => false,
-        'manage-categories' => false,
+        'read-categories' => false,
+        'create-categories' => false,
+        'update-categories' => false,
+        'delete-categories' => false,
+        'read-products' => false,
+        'create-products' => false,
+        'update-products' => false,
+        'delete-products' => false,
     ];
     public $admin;
 

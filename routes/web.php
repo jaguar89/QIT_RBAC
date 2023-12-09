@@ -38,15 +38,15 @@ Route::middleware(['auth', 'permission:dashboard-access'])->group(function () {
 //    Volt::route('category/manage', 'admin.manage-category')
 //        ->name('manage.category');
 
-    Route::group(['middleware' => ['permission:manage-categories']], function () {
+    Route::group(['middleware' => ['permission:read-categories']], function () {
         Route::get('categories', AllCategories::class)->name('categories');
-        Route::get('categorys/manage/{id?}', ManageCategory::class)->name('manage.category');
+        Route::get('categorys/manage/{id?}', ManageCategory::class)->name('manage.category')->middleware(['permission:create-categories|update-categories']);
     });
 
 
-    Route::group(['middleware' => ['permission:manage-products']], function () {
+    Route::group(['middleware' => ['permission:read-products']], function () {
         Route::get('products', AllProducts::class)->name('products');
-        Route::get('products/manage/{id?}', ManageProduct::class)->name('manage.product');
+        Route::get('products/manage/{id?}', ManageProduct::class)->name('manage.product')->middleware(['permission:create-products|update-products']);
     });
 
 

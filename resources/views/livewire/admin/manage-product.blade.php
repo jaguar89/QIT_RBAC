@@ -8,10 +8,12 @@
                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" wire:navigate>
                 All Products
             </a>
-            <a href="{{ route('manage.product') }}"
-               class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" wire:navigate>
-                Create Product
-            </a>
+            @can('create-products')
+                <a href="{{ route('manage.product') }}"
+                   class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" wire:navigate>
+                    Create Product
+                </a>
+            @endcan
         </nav>
     </div>
 </x-slot>
@@ -103,11 +105,14 @@
 
                     <!-- Product Category -->
                     <div class="mb-4">
-                        <label for="product_category" class="block text-sm font-medium text-gray-600">Product Category:</label>
-                        <select id="product_category" wire:model="category_id" name="category_id" class="mt-1 p-2 w-full border rounded-md">
+                        <label for="product_category" class="block text-sm font-medium text-gray-600">Product
+                            Category:</label>
+                        <select id="product_category" wire:model="category_id" name="category_id"
+                                class="mt-1 p-2 w-full border rounded-md">
                             <option value="">Select Category</option>
                             @foreach($categories as $category)
-                                <option value="{{ $category->id }}"  {{ $category->id == $category_id ? 'selected' : '' }}>{{ $category->name }}</option>
+                                <option
+                                    value="{{ $category->id }}" {{ $category->id == $category_id ? 'selected' : '' }}>{{ $category->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -116,7 +121,8 @@
                     <div class="mb-4">
                         <label for="description" class="block text-sm font-medium text-gray-600">
                             Description:</label>
-                        <textarea id="description" wire:model="description" name="description"  class="mt-1 p-2 w-full border rounded-md"></textarea>
+                        <textarea id="description" wire:model="description" name="description"
+                                  class="mt-1 p-2 w-full border rounded-md"></textarea>
                     </div>
 
                     <!-- Product Price -->
